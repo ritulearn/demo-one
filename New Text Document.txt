@@ -1,0 +1,206 @@
+import 'dart :async';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Splash Screen',
+      theme: ThemeData(
+        primarySwatch: Colors.pink,
+      ),
+      home: MyHomePage(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(Duration(seconds: 3),
+            ()=>Navigator.pushReplacement(context,
+            MaterialPageRoute(builder:
+                (context) =>
+                SecondScreen()
+            )
+        )
+    );
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Center(
+        child: Column(
+        children: <Widget>[
+        Image.asset('images/Picture2.jpg',
+        height: 300,
+        width: 200
+    ),
+    Text(
+    'Smile and connect',
+      style: TextStyle(
+          color: Colors.pink[800],
+          fontWeight: FontWeight.bold,
+          fontFamily: 'Italic',
+          fontSize: 30),
+    ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Text("V 1.0",
+              style: TextStyle(
+                  color: Colors.pink[800],
+                  fontSize: 20),
+            ),
+          ),
+
+         Column(
+           verticalDirection: VerticalDirection.down /* o VerticalDirection.up */,
+           children: <Widget>[
+             Text(
+               'copyright',
+             ),
+          ]
+             ),
+           ]
+         ),
+        ),
+    );
+  }
+}
+class SecondScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            onPressed: (){},
+            icon: Icon(Icons.search),
+          ),
+          IconButton(
+            onPressed: (){},
+            icon: Icon(Icons.more_vert),
+          ),
+        ],
+        titleSpacing: 10.0,
+        title: Text('Dashboard'),
+        backgroundColor: Colors.pink[800],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.pink[800],
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white,
+        currentIndex: 0, // this will be set when a new tab is tapped
+        items: [
+          BottomNavigationBarItem(
+            icon: new Icon(Icons.home),
+            title: new Text('Home'),
+          ),
+          BottomNavigationBarItem(
+            icon: new Icon(Icons.perm_contact_calendar),
+
+
+            title: new Text('Calender'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            title: Text('Profile'),
+          ),
+        ]
+      ),
+      drawer: Drawer(
+        child:  ListView(
+            padding:  EdgeInsets.all(0.0),
+            children: <Widget>[
+        UserAccountsDrawerHeader(
+        accountName:  Text("Ritul Kumar"),
+        accountEmail:  Text("abcd@gmail.com"),
+        currentAccountPicture:  CircleAvatar(
+          backgroundColor: Colors.white,
+          child: Image.asset('images/Picture3.png',
+          ),
+          )
+        ),
+            ListTile(
+              leading:  Icon(Icons.person),
+              title: Text('Name',
+            style: TextStyle(
+    color: Colors.black,
+                fontFamily: 'RobotoMono',
+    fontSize: 20),
+    ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading:  Icon(Icons.stars),
+              title: Text('Profile',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+    ListTile(
+      leading:  Icon(Icons.contacts),
+    title: Text('Contacts',
+    style: TextStyle(
+    color: Colors.black,
+    fontSize: 20),
+    ),
+    onTap: () {
+    Navigator.pop(context);
+    },
+    ),
+            ListTile(
+              leading:  Icon(Icons.paste_outlined),
+              title: Text('Activities',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading:  Icon(Icons.timer),
+              title: Text('History',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            ListTile(
+              leading:  Icon(Icons.power_settings_new_sharp),
+              title: Text('Signout',
+                style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+    ],
+    ),
+    ),
+    );
+  }
+}

@@ -1,0 +1,169 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(
+    MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          actions: <Widget>[
+            IconButton(
+                onPressed: (){},
+                icon: Icon(Icons.search),
+            ),
+            IconButton(
+              onPressed: (){},
+              icon: Icon(Icons.more_vert),
+            ),
+          ],
+          titleSpacing: 10.0,
+          title: Text('Dashboard'),
+            backgroundColor: Colors.pink[800],
+              ),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.pink[800],
+          selectedItemColor: Colors.white,
+          unselectedItemColor: Colors.white,
+          currentIndex: 0, // this will be set when a new tab is tapped
+          items: [
+            BottomNavigationBarItem(
+              icon: new Icon(Icons.home),
+              title: new Text('Home'),
+            ),
+            BottomNavigationBarItem(
+              icon: new Icon(Icons.perm_contact_calendar),
+              title: new Text('Calender'),
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.person),
+                title: Text('Profile'),
+            )
+          ],
+        ),
+        drawer: Drawer(
+        ),
+      ),
+  ),
+  );
+}
+
+
+
+///// with splash screen
+
+import 'dart:async';
+import 'package:flutter/material.dart';
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Splash Screen',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: MyHomePage(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(Duration(seconds: 3),
+            ()=>Navigator.pushReplacement(context,
+            MaterialPageRoute(builder:
+                (context) =>
+                SecondScreen()
+            )
+        )
+    );
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+            backgroundColor: Colors.white,
+        body: Container(
+          
+    decoration: BoxDecoration(color: Colors.white),
+
+    child: Column(
+    children: <Widget>[
+    Expanded(
+    child: Center(
+
+    child: Text('Application Name',
+    style: TextStyle(
+        color: Colors.pink[800],
+        fontWeight: FontWeight.bold,
+        fontSize: 30),
+        ),
+    ),
+    ),
+    Align(
+    alignment: Alignment.bottomCenter,
+    child: Text("Copyrights",
+      style: TextStyle(
+          color: Colors.pink[800],
+          fontWeight: FontWeight.bold,
+          fontSize: 20),
+    ),
+    )
+    ],
+    ),
+    ),
+    );
+  }
+}
+class SecondScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            onPressed: (){},
+            icon: Icon(Icons.search),
+          ),
+          IconButton(
+            onPressed: (){},
+            icon: Icon(Icons.more_vert),
+          ),
+        ],
+        titleSpacing: 10.0,
+        title: Text('Dashboard'),
+        backgroundColor: Colors.pink[800],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.pink[800],
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white,
+        currentIndex: 0, // this will be set when a new tab is tapped
+        items: [
+          BottomNavigationBarItem(
+            icon: new Icon(Icons.home),
+            title: new Text('Home'),
+          ),
+          BottomNavigationBarItem(
+            icon: new Icon(Icons.perm_contact_calendar),
+            title: new Text('Calender'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            title: Text('Profile'),
+          ),
+        ]
+      ),
+      drawer: Drawer(
+      ),
+    );
+  }
+}
